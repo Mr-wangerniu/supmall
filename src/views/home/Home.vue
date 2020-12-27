@@ -1,7 +1,14 @@
 <template>
   <div id="home">
     <nav-bar class="home-nav"><div slot="center">购物街</div></nav-bar>
-    <better-scroll ref="homeScroll" :probeType="3" @scroll="contentScroll">
+    <better-scroll
+      ref="homeScroll"
+      :probeType="3"
+      @scroll="contentScroll"
+      :pull-up-load="true"
+      @pullingUp="loadMore"
+      class="home-content"
+    >
         <home-swiper :banners="banners"></home-swiper>
         <home-recommend-view :recommends="recommends"/>
         <feature-view/>
@@ -30,7 +37,6 @@
       NavBar,
       HomeSwiper,
       HomeRecommendView,
-      getHomeGoods,
       FeatureView,
       TabControl,
       GoodsList,
@@ -64,6 +70,7 @@
       this.mgetHomeGoods('pop')
       this.mgetHomeGoods('new')
       this.mgetHomeGoods('sell')
+
     },
     methods: {
       // 1 事件监听相关代码
@@ -80,6 +87,21 @@
             break
         }
       },
+      // 回到顶部代码
+      backTopClick() {
+        this.$refs.homeScroll.scroll.scrollTo(0,0,500)
+      },
+      // 通过$emit拿到position信息
+      contentScroll(position) {
+        this.position = position
+        // position.y < 1000
+        this.isShow = (-position.y) > 1000
+      },
+      //加载更多代码
+      loadMore() {
+        this.mgetHomeGoods(this.currentItem)
+        this.$refs.homeScroll.scroll.refresh()
+      },
 
       // 2 网络请求相关代码
       mgetHomeMultidata() {
@@ -94,19 +116,11 @@
         getHomeGoods(type,page).then(res => {
           this.goods[type].list.push(...res.data.list)
           this.goods[type].page += 1
+          this.$refs.homeScroll.scroll.finishPullUp()
         })
       },
 
-      // 回到顶部代码
-      backTopClick() {
-        this.$refs.homeScroll.scroll.scrollTo(0,0,500)
-      },
-      // 通过$emit拿到position信息
-      contentScroll(position) {
-        this.position = position
-        // position.y < 1000
-        this.isShow = (-position.y) > 1000
-      }
+
     }
   }
 </script>

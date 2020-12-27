@@ -19,6 +19,10 @@
       probeType: {
         type: Number,
         default: 0
+      },
+      pullUpLoad: {
+        type: Boolean,
+        default: false
       }
     },
     mounted() {
@@ -27,7 +31,8 @@
       // 我们可以正确计算它以及它内层content的高度，以确保滚动正常
       this.scroll = new BScroll(this.$refs.wrapper,{
         click: true,
-        probeType: this.probeType
+        probeType: this.probeType,
+        pullUpLoad: this.pullUpLoad,
       })
 
       //监听滚动位置
@@ -35,17 +40,16 @@
         // console.log(position);
         this.$emit('scroll',position)
       })
+
+      // 监听上拉事件
+      this.scroll.on('pullingUp',() => {
+        // console.log('shanglajiazaigenduo');
+        this.$emit('pullingUp')
+      })
     }
   }
 </script>
 
 <style scoped>
-.wrapper{
-  /*position: fixed;*/
-  height: 600px;
-}
-  .content{
-    height: 5600px;
-    overflow: hidden;
-  }
+
 </style>
