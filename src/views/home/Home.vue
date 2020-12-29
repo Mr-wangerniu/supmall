@@ -5,8 +5,6 @@
       ref="homeScroll"
       :probeType="3"
       @scroll="contentScroll"
-      :pull-up-load="true"
-      @pullingUp="loadMore"
       class="home-content"
     >
         <home-swiper :banners="banners"></home-swiper>
@@ -71,6 +69,17 @@
       this.mgetHomeGoods('new')
       this.mgetHomeGoods('sell')
 
+
+
+    },
+    mounted() {
+      // 3 监听item中图片加载完成
+      this.$bus.$on('itemImageLoad',() => {
+        // console.log('itemImageLoad');
+        if(this.$refs.homeScroll.scroll)
+          this.$refs.homeScroll.scroll.refresh()
+        // console.log(this.$refs.homeScroll.scroll);
+      })
     },
     methods: {
       // 1 事件监听相关代码
@@ -98,10 +107,6 @@
         this.isShow = (-position.y) > 1000
       },
       //加载更多代码
-      loadMore() {
-        this.mgetHomeGoods(this.currentItem)
-        this.$refs.homeScroll.scroll.refresh()
-      },
 
       // 2 网络请求相关代码
       mgetHomeMultidata() {
@@ -116,7 +121,7 @@
         getHomeGoods(type,page).then(res => {
           this.goods[type].list.push(...res.data.list)
           this.goods[type].page += 1
-          this.$refs.homeScroll.scroll.finishPullUp()
+          // this.$refs.homeScroll.scroll.finishPullUp()
         })
       },
 

@@ -19,10 +19,6 @@
       probeType: {
         type: Number,
         default: 0
-      },
-      pullUpLoad: {
-        type: Boolean,
-        default: false
       }
     },
     mounted() {
@@ -41,15 +37,18 @@
         this.$emit('scroll',position)
       })
 
-      // 监听上拉事件
-      this.scroll.on('pullingUp',() => {
-        // console.log('shanglajiazaigenduo');
-        this.$emit('pullingUp')
-      })
+      this.scroll.refresh()
+
     }
   }
 </script>
 
 <style scoped>
-
+/*.wrapper{*/
+/*  height: 500px;*/
+/*}*/
+/*  .content{*/
+/*    height: 5900px;*/
+/*    overflow: hidden;*/
+/*  }*/
 </style>
