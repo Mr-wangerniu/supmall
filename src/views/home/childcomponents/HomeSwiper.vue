@@ -1,8 +1,8 @@
 <template>
   <swiper>
-    <swiper-item v-for="item in banners">
+    <swiper-item v-for="(item,number) in banners" :key="number">
       <a :href="item.link">
-        <img :src="item.image" alt="">
+        <img :src="item.image" alt="" @load="imageLoad">
       </a>
     </swiper-item>
   </swiper>
@@ -17,6 +17,20 @@
         type: Array,
         default() {
           return []
+        }
+      }
+    },
+    data() {
+      return {
+        isLoad: true
+      }
+    },
+    methods: {
+      imageLoad() {
+        // 监听图片，加载完成则向父组件发送事件
+        if(this.isLoad) {
+          this.$emit('swipeImageLoad')
+          this.isLoad = !this.isLoad
         }
       }
     },

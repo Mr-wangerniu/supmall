@@ -19,6 +19,10 @@
       probeType: {
         type: Number,
         default: 0
+      },
+      pullUpLoad: {
+        type: Boolean,
+        default: false
       }
     },
     mounted() {
@@ -32,10 +36,20 @@
       })
 
       //监听滚动位置
-      this.scroll.on('scroll',(position) => {
-        // console.log(position);
-        this.$emit('scroll',position)
-      })
+      if(this.probeType == 3 || this.probeType == 3) {
+        this.scroll.on('scroll',(position) => {
+          // console.log(position);
+          this.$emit('scroll',position)
+        })
+      }
+
+      //监听scroll滚到底部
+      if(this.pullUpLoad) {
+        this.scroll.on('pullingUp',() => {
+          // console.log('已经到底部了！');
+          this.$emit('havePulling')
+        })
+      }
 
       this.scroll.refresh()
 
