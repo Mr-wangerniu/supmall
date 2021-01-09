@@ -8,7 +8,7 @@
 <script>
   import DetailNavBar from "./detailnavbar/DetailNavBar";
   import DetailSwiper from "./detailswiper/DetailSwiper";
-  import {getDetail} from "network/detail";
+  import {getDetail,DetailInfo} from "network/detail";
 
   export default {
     name: "Detail",
@@ -19,7 +19,8 @@
     data() {
       return {
         id: null,
-        topImages: []
+        topImages: [],
+        detailInfo:{}
       }
     },
     created() {
@@ -28,9 +29,10 @@
       // 2 根据id拿到对应的页面数据
       getDetail(this.id).then(res =>{
         // console.log(res.result.itemInfo.topImages);
+        console.log(res)
         this.topImages = res.result.itemInfo.topImages
       })
-    }
+    },
 
   }
 </script>
