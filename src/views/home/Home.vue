@@ -96,7 +96,7 @@
       })
       // 2 获取tabControl的offsetTop
       // 所有的组件都有一个属性$el: 用于获取组件中的元素
-      this.tabOffsetTop = this.$refs.tabControl
+      // this.tabOffsetTop = this.$refs.tabControl2
     },
     methods: {
       // 一 事件监听相关代码
@@ -138,7 +138,7 @@
       // 5 图片加载完成后...
       swipeImageLoad() {
         this.tabOffsetTop = this.$refs.tabControl2.$el.offsetTop
-        console.log(this.$refs.tabControl.$el.offsetTop);
+        // console.log(this.$refs.tabControl.$el.offsetTop);
       },
 
       // 2 网络请求相关代码
