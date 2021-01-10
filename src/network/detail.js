@@ -12,12 +12,12 @@ export function getDetail(iid) {
 }
 
 export class DetailInfo {
-  constructor(itemInfo,columns,servece) {
+  constructor(itemInfo,columns,service) {
     this.desc = itemInfo.desc
     this.price = itemInfo.price
-    this.oldprice = itemInfo.oldprice
+    this.oldprice = itemInfo.oldPrice
     this.discount = itemInfo.discountDesc
     this.columns = columns
-    this.servece = servece
+    this.service = service
   }
 }

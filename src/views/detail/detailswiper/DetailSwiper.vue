@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <swiper class="detail-swiper">
-      <swiper-item
-        v-for="(item,number) in topImages"
-        :key="number"
-        class="detail-swiper-item"
-      >
-        <img :src="item" alt="">
-      </swiper-item>
-    </swiper>
-  </div>
+  <swiper class="detail-swiper">
+    <swiper-item
+      v-for="(item,number) in topImages"
+      :key="number"
+      class="detail-swiper-item"
+    >
+      <img :src="item" alt="">
+    </swiper-item>
+  </swiper>
 </template>
 
 <script>
@@ -33,9 +31,9 @@
 
 <style scoped>
   .detail-swiper{
-    height: 300px;
-    overflow: hidden;
-    position: relative;
     top: 47px;
   }
+ .detail-swiper-item{
+   height: 300px;
+ }
 </style>
