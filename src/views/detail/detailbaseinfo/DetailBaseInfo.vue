@@ -1,10 +1,13 @@
 <template>
   <div v-if="Object.keys(goodsInfo).length !==0" class="detail-base-info">
-    <div class="info-title">{{goodsInfo.desc}}</div>
+    <div class="info-title">{{goodsInfo.title}}</div>
     <div class="info-price">
       <span class="n-price">{{goodsInfo.price}}</span>
       <span class="o-price">{{goodsInfo.oldprice}}</span>
-      <span v-if="goodsInfo.discount" class="discount">{{goodsInfo.discount}}</span>
+      <span v-if="goodsInfo.discount"
+            class="discount"
+      :style="{backgroundColor: goodsInfo.discountBgColor}">
+        {{goodsInfo.discount}}</span>
     </div>
     <div class="info-other">
       <span>{{goodsInfo.columns[0]}}</span>
@@ -41,12 +44,12 @@
    color: #999;
    border-bottom: 5px solid #f2f5f8;
    position: relative;
-   top: 47px
+   /*top: 47px*/
  }
 
  .info-title {
    color: #222;
-   font-size: 18px;
+   font-size: 15px;
    /*height: 38px;*/
    text-overflow: ellipsis;
    overflow: hidden;
@@ -69,9 +72,9 @@
 
  .info-price .discount {
    font-size: 12px;
-   padding: 2px 5px;
+   padding: 2px 6px 2px 3px;
    color: #fff;
-   background-color: var(--color-high-text);
+   /*background-color: var(--color-high-text);*/
    border-radius: 8px;
    margin-left: 5px;
 

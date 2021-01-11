@@ -45,6 +45,8 @@
   }
   .nav-bar{
     background-color: #eeeeee;
+    position: relative;
+    z-index: 9;
   }
   .title-item{
     flex: 1;

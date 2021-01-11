@@ -13,11 +13,19 @@ export function getDetail(iid) {
 
 export class DetailInfo {
   constructor(itemInfo,columns,service) {
-    this.desc = itemInfo.desc
+    this.title = itemInfo.title
     this.price = itemInfo.price
     this.oldprice = itemInfo.oldPrice
     this.discount = itemInfo.discountDesc
+    this.discountBgColor = itemInfo.discountBgColor
     this.columns = columns
     this.service = service
   }
 }
+
+// export class ShopInfo {
+//   constructor(shopInfo) {
+//     this.shopLogo = shopInfo.shopLogo
+//     this.score = shopInfo.score
+//   }
+// }

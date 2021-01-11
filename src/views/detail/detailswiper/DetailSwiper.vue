@@ -31,7 +31,7 @@
 
 <style scoped>
   .detail-swiper{
-    top: 47px;
+    /*top: 47px;*/
   }
  .detail-swiper-item{
    height: 300px;
