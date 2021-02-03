@@ -1,10 +1,13 @@
 <template>
   <div class="detail">
     <detail-nav-bar/>
-    <better-scroll class="detail-scroll">
+    <better-scroll class="content"
+                   :probeType="3">
       <detail-swiper :top-images="topImages"></detail-swiper>
       <detail-base-info :goods-info="detailInfo"></detail-base-info>
       <shop-info :shop-info="shopInfo"></shop-info>
+      <detail-goods-info :detail-goods-info="detailGoodsInfo"></detail-goods-info>
+      <detail-params-info :detail-params-info="itemParams"/>
     </better-scroll>
   </div>
 </template>
@@ -15,6 +18,9 @@
   import DetailBaseInfo from "./detailbaseinfo/DetailBaseInfo";
   import BetterScroll from "components/common/betterscroll/BetterScroll";
   import ShopInfo from "./shopinfo/ShopInfo";
+  import DetailGoodsInfo from "./detailgoodsinfo/DetailGoodsInfo";
+  import DetailParamsInfo from "./detailparaminfo/DetailParamsInfo";
+
   import {getDetail,DetailInfo} from "network/detail";
 
   export default {
@@ -24,14 +30,18 @@
       DetailSwiper,
       DetailBaseInfo,
       BetterScroll,
-      ShopInfo
+      ShopInfo,
+      DetailGoodsInfo,
+      DetailParamsInfo
     },
     data() {
       return {
         id: null,
         topImages: [],
         detailInfo:{},
-        shopInfo: {}
+        shopInfo: {},
+        detailGoodsInfo: {},
+        itemParams: {}
       }
     },
     created() {
@@ -50,6 +60,10 @@
         // console.log(this.detailInfo);
         // 4 取出店铺信息
         this.shopInfo = data.shopInfo
+        // 5 取出详情信息
+        this.detailGoodsInfo = data.detailInfo
+        // 6 取出参数信息
+        this.itemParams = data.itemParams
       })
 
     },
@@ -64,9 +78,11 @@
     position: relative;
     z-index: 1;
   }
-  .detail-scroll{
+  .content{
     background-color: #fff;
-    height: calc(80% - 47px);
+    /*height: 4900px;*/
+    overflow: hidden;
+    position: absolute;
     /*overflow: hidden;*/
   }
 </style>

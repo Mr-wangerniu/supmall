@@ -2,7 +2,7 @@ import {request} from "./request";
 export function getDetail(iid) {
   return request({
     url: 'detail',
-    timeout: 500000000,
+    timeout: 5000000,
     params: {
       // iid: iid
       // 用ES6语法
