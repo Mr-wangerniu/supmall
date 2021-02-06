@@ -8,6 +8,7 @@
       <shop-info :shop-info="shopInfo"></shop-info>
       <detail-goods-info :detail-goods-info="detailGoodsInfo"></detail-goods-info>
       <detail-params-info :detail-params-info="itemParams"/>
+      <detail-comment-info :comment-info="commentInfo" />
     </better-scroll>
   </div>
 </template>
@@ -20,6 +21,7 @@
   import ShopInfo from "./shopinfo/ShopInfo";
   import DetailGoodsInfo from "./detailgoodsinfo/DetailGoodsInfo";
   import DetailParamsInfo from "./detailparaminfo/DetailParamsInfo";
+  import DetailCommentInfo from "./detailCommentInfo/DetailCommentInfo";
 
   import {getDetail,DetailInfo} from "network/detail";
 
@@ -32,7 +34,8 @@
       BetterScroll,
       ShopInfo,
       DetailGoodsInfo,
-      DetailParamsInfo
+      DetailParamsInfo,
+      DetailCommentInfo,
     },
     data() {
       return {
@@ -41,7 +44,8 @@
         detailInfo:{},
         shopInfo: {},
         detailGoodsInfo: {},
-        itemParams: {}
+        itemParams: {},
+        commentInfo: {}
       }
     },
     created() {
@@ -64,8 +68,12 @@
         this.detailGoodsInfo = data.detailInfo
         // 6 取出参数信息
         this.itemParams = data.itemParams
+        // console.log(this.itemParams);
+        // 7 取出评论信息
+        if(data.rate.cRate !== 0){
+          this.commentInfo = data.rate.list[0]
+        }
       })
-
     },
 
   }
